@@ -17,18 +17,22 @@ def main():
         start_date = args.starttime 
         end_date = args.endtime
         
+        # Build additional params from args, excluding starttime and endtime
+        additional_params = build_query_params(args)
+        additional_params.pop('starttime', None)
+        additional_params.pop('endtime', None)
+        
         session = create_session()
         try:
             print(f"Starting monthly earthquake queries from {start_date} to {end_date}...")
-            query_monthly_earthquakes(BASE_URL, start_date, end_date, session=session)
+            query_monthly_earthquakes(BASE_URL, start_date, end_date, additional_params=additional_params, session=session)
             print('Monthly queries completed successfully!')
         except Exception as e:
             print(f'Error: {e}')
             exit(1)
         return
 
-    # Regular single query mode
-    # Create session for API calls
+    # Regular single query mode, create session for API calls
     session = create_session()
 
     # Build query parameters
