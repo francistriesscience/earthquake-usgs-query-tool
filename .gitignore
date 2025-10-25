@@ -37,7 +37,6 @@ dataset/raw/*.kml
 dataset/raw/*.txt
 
 # IDE
-.vscode/
 .idea/
 *.swp
 *.swo
